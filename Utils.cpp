@@ -62,7 +62,7 @@ void tabelaHash::inserirLivro(const Livro &novoLivro)
     cout << "Livro '" << novoLivro.nome << "' (ID: " << novoLivro.id << ") inserido com sucesso!" << endl;
 }
 
-// ... Implementar aqui as outras funções: buscar, remover, editar, listar ...
+// funções
 
 void tabelaHash::buscarLivroPorID()
 {

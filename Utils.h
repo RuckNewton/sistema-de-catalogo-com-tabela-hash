@@ -31,7 +31,7 @@ struct tabelaHash
     tabelaHash();
     ~tabelaHash();
 
-    // Protótipos das Funções
+    // Inicialização das funções
     int gerarHash(int id);
     void inserirLivro(const Livro &novoLivro);
     void addLivro();
