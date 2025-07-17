@@ -35,7 +35,7 @@ struct tabelaHash
     int gerarHash(int id);
     void inserirLivro(const Livro &novoLivro);
     void addLivro();
-    void buscarLivroPorID();  // Função a ser criada
+    void buscarLivroPorID();
     void removerLivroPorID(); // Função a ser criada
     void editarLivroPorID();  // Função a ser criada
     void listarTodos();       // Função a ser criada

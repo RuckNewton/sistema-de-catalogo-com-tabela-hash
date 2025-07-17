@@ -95,3 +95,47 @@ void tabelaHash::buscarLivroPorID()
         cout << "\nLivro com ID " << idBusca << " não encontrado no catálogo." << endl;
     }
 }
+
+void tabelaHash::removerLivroPorID()
+{
+    int idBusca;
+    cout << "\n--- Remover Livro por ID ---" << endl;
+    cout << "Digite o ID do livro que deseja remover: ";
+    cin >> idBusca;
+
+    int indice = gerarHash(idBusca);
+    No *atual = tabela[indice];
+    No *anterior = nullptr;
+    bool encontrado = false;
+
+    // Percorre a lista para encontrar o nó a ser removido
+    while (atual != nullptr)
+    {
+        if (atual->dadosLivro.id == idBusca)
+        {
+            // O nó a ser removido é o primeiro da lista
+            if (anterior == nullptr)
+            {
+                tabela[indice] = atual->prox;
+            }
+            // O nó a ser removido no meio ou no fim
+            else
+            {
+                anterior->prox = atual->prox;
+            }
+
+            cout << "\nLivro '" << atual->dadosLivro.nome << "' (ID: " << idBusca << ") removido com sucesso!" << endl;
+            delete atual;
+            encontrado = true;
+            break;
+        }
+
+        anterior = atual;
+        atual = atual->prox;
+    }
+
+    if (!encontrado)
+    {
+        cout << "\nLivro com ID " << idBusca << " não encontrado. Nenhum livro foi removido." << endl;
+    }
+}
