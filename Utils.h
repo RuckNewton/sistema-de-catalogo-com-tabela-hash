@@ -36,10 +36,10 @@ struct tabelaHash
     void inserirLivro(const Livro &novoLivro);
     void addLivro();
     void buscarLivroPorID();
-    void removerLivroPorID(); // Função a ser criada
-    void editarLivroPorID();  // Função a ser criada
-    void listarTodos();       // Função a ser criada
-    void exibirMenu();        // Função a ser criada
+    void removerLivroPorID(); 
+    void editarLivroPorID();  
+    void listarTodos();      
+    void exibirMenu();
 };
 
 #endif
