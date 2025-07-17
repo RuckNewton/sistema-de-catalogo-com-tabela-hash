@@ -1,82 +1,36 @@
-#include <iostream>
-#include <string>
-using namespace std;
+#include "Utils.h"
 
-struct Livro
-{
-    int id;
-    string nome;
-    string categoria;
-    string autor;
-};
+int main() {
+    tabelaHash catalogo;
+    int opcao;
 
-struct No
-{
-    Livro dadosLivro;
-    No *prox;
-};
+    do {
+        catalogo.exibirMenu(); // Função que mostra as opções
+        cin >> opcao;
 
-const int TAM = 101;
-
-struct tabelaHash
-{
-    No *tabela[TAM];
-    int idContador;
-
-    tabelaHash() : idContador(1)
-    {
-        for (int i = 0; i < TAM; i++)
-        {
-            tabela[i] = nullptr;
+        switch (opcao) {
+            case 1:
+                catalogo.addLivro();
+                break;
+            case 2:
+                catalogo.buscarLivroPorID();
+                break;
+            case 3:
+                catalogo.removerLivroPorID();
+                break;
+            case 4:
+                catalogo.editarLivroPorID();
+                break;
+            case 5:
+                catalogo.listarTodos();
+                break;
+            case 0:
+                cout << "Saindo do sistema..." << endl;
+                break;
+            default:
+                cout << "Opção inválida. Tente novamente." << endl;
         }
-    }
-    // destrutor
-    ~tabelaHash()
-    {
-        for (int i = 0; i < TAM; i++)
-        {
-            No *atual = tabela[i];
-            while (atual != nullptr)
-            {
-                No *proximo = atual->prox;
-                delete atual;
-                atual = proximo;
-            }
-        }
-    }
+    } while (opcao != 0);
 
-    int gerarHash(int id)
-    {
-        return id % TAM;
-    }
-
-    void addLivro()
-    {
-        Livro novoLivro;
-        novoLivro.id = idContador++;
-
-        cout << "--- Adicionar novo livro ---" << endl;
-        cout << "ID: " << novoLivro.id << endl;
-
-        cout << "Título do livro: ";
-        getline(cin >> ws, novoLivro.nome);
-
-        cout << "Categoria do livro (gênero): ";
-        getline(cin >> ws, novoLivro.categoria);
-
-        cout << "Autor: ";
-        getline(cin >> ws, novoLivro.autor);
-
-        inserirLivro(novoLivro);
-    }
-
-    void inserirLivro(const Livro &novoLivro)
-    {
-        int indice = gerarHash(novoLivro.id);
-        No *novoNo = new No{novoLivro, nullptr};
-        novoNo->prox = tabela[indice];
-        tabela[indice] = novoNo;
-
-        cout << "Livro '" << novoLivro.nome << "' (ID: " << novoLivro.id << ") inserido com sucesso!" << endl;
-    }
-};
+    return 0;
+}
